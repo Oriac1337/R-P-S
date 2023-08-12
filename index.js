@@ -1,9 +1,14 @@
 
+function getComputerChoice() {
+const choice = [`rock`, `paper`, `scissors`];
+const random = Math.floor(Math.random() * 3);
+return choice[random];
+}
+
 let playerScore = 0
 let computerScore = 0
 
 function playRound(computerSelection, playerSelection){
-	playerSelection = playerSelection.toLowerCase();
 		switch(playerSelection) {
 			case 'rock':
 				switch(computerSelection) {
@@ -34,42 +39,71 @@ function playRound(computerSelection, playerSelection){
 				}
 		}
 }
-
-
-function getComputerChoice() {
-const choice = [`rock`, `paper`, `scissors`];
-const random = Math.floor(Math.random() * 3);
-return choice[random];
-}
-
-function game(){
-    let computerSelection = getComputerChoice();
-    let playerSelection = prompt(`Choose Your Weapon`);
-    if (!['rock', 'paper', 'scissor', 'parchment', 'stone', 'shears', 'blade'].includes(playerSelection.toLowerCase())) {
-        alert('That is not a weapon! Please choose rock, paper, or scissor.');
-        return game();
-    }
-    let result = playRound(computerSelection, playerSelection);
+  const div = document.createElement('div')
+  const div2 = document.createElement('div')
+  const div3 = document.createElement('div')
+	container.appendChild(div);
+	container.appendChild(div2);
+	container.appendChild(div3);
+	
+    
+const btnR = document.querySelector('#btnR');
+btnR.addEventListener('click', () => {
+	let computerSelection = getComputerChoice();
+	let playerSelection = `rock`
+	let result = playRound(computerSelection, playerSelection);
     if (result.includes(`winnest`)) {
         playerScore++;
     } else if (result.includes(`losest`)) {
         computerScore++;
     }
-    alert(result);
-    alert(`Player has ${playerScore} point, CPU has ${computerScore} points`)
     if (playerScore == 5){
-    alert(`You have Win`)
+    div3.textContent =`You have Win`
     } else if (computerScore == 5){
-    alert(`You Lose!, Computer Supremacy`)
+    div3.textContent =`You Lose!, Computer Supremacy`
     }
-}
-i = 5
-
-document.addEventListener('DOMContentLoaded', () => {
-		while (i > playerScore && i > computerScore){
-    let play = confirm('Do you want to play?');
-    if (play) {
-        game();
-    }
-}
+  div.textContent = result
+  div2.textContent = `Player has ${playerScore} point, CPU has ${computerScore} points`;
 });
+
+const btnP = document.querySelector('#btnP');
+btnP.addEventListener('click', () => {
+	let computerSelection = getComputerChoice();
+	let playerSelection = `paper`
+	let result = playRound(computerSelection, playerSelection);
+    if (result.includes(`winnest`)) {
+        playerScore++;
+    } else if (result.includes(`losest`)) {
+        computerScore++;
+    }
+    if (playerScore == 5){
+	 	div3.textContent =`You have Win`
+    } else if (computerScore == 5){
+    div3.textContent =`You Lose!, Computer Supremacy`
+    }
+  div.textContent = result
+  div2.textContent = `Player has ${playerScore} point, CPU has ${computerScore} points`;
+});
+
+const btnS = document.querySelector('#btnS');
+btnS.addEventListener('click', () => {
+	let computerSelection = getComputerChoice();
+	let playerSelection = `scissor`;
+	let result = playRound(computerSelection, playerSelection);
+    if (result.includes(`winnest`)) {
+        playerScore++;
+    } else if (result.includes(`losest`)) {
+        computerScore++;
+    }
+    if (playerScore == 5){
+    div3.textContent =`You have Win`
+    } else if (computerScore == 5){
+    div3.textContent =`You Lose!, Computer Supremacy`
+    }
+  div.textContent = result;
+  div2.textContent = `Player has ${playerScore} point, CPU has ${computerScore} points`;
+});
+
+
+
+
